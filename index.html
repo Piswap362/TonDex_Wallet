@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TON DEX Wallet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #006D77;
+            --primary-medium: #1A6E7A;
+            --primary-light: #83C5BE;
+            --accent-color: #FFDDD2;
+            --text-light: #FFFFFF;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --gold-color: #FFD700;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .scroll-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 80px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        .wallet-header {
+            margin-bottom: 20px;
+        }
+        
+        .wallet-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        
+        .wallet-box {
+            background: linear-gradient(135deg, rgba(26, 110, 122, 0.5) 0%, rgba(0, 109, 119, 0.7) 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(131, 197, 190, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .wallet-icon {
+            font-size: 40px;
+            color: var(--gold-color);
+            margin-bottom: 15px;
+        }
+        
+        .wallet-balance {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--gold-color);
+        }
+        
+        .wallet-address {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 15px auto;
+            display: inline-block;
+            word-break: break-all;
+            max-width: 80%;
+        }
+        
+        .wallet-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .wallet-btn {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-light);
+            color: var(--text-light);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .wallet-btn i {
+            font-size: 20px;
+            color: var(--accent-color);
+        }
+        
+        .wallet-btn:hover {
+            background: rgba(131, 197, 190, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .wallet-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .roadmap-message {
+            background: rgba(255, 221, 210, 0.2);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+            margin-top: 25px;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        .roadmap-message h4 {
+            margin-top: 0;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 109, 119, 0.9);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(131, 197, 190, 0.3);
+            z-index: 1000;
+            max-width: 400px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+            text-decoration: none;
+            position: relative;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: var(--transition);
+            opacity: 0.7;
+            flex: 1;
+        }
+        
+        .menu-btn:hover {
+            opacity: 1;
+            background: rgba(131, 197, 190, 0.1);
+        }
+        
+        .menu-btn i {
+            font-size: 20px;
+        }
+        
+        .menu-btn.active {
+            opacity: 1;
+            font-weight: 600;
+        }
+        
+        .menu-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="wallet-header">
+            <h1 class="wallet-title">TON DEX Wallet</h1>
+            <p>View all your collected points here</p>
+        </div>
+        
+        <div class="wallet-box">
+            <i class="fas fa-wallet wallet-icon"></i>
+            <p>Your Current Balance:</p>
+            <div class="wallet-balance" id="walletBalance">0 TON</div>
+            <div class="wallet-address" id="walletAddress">EQ... (TON Wallet Address)</div>
+            
+            <div class="wallet-actions">
+                <button class="wallet-btn" disabled>
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Receive</span>
+                </button>
+                <button class="wallet-btn" disabled>
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Send</span>
+                </button>
+            </div>
+
+            <div class="roadmap-message">
+                <h4><i class="fas fa-rocket"></i> Coming Soon</h4>
+                <p>Wallet features will be activated once we reach 1 million active users on TON DEX.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-menu">
+        <a href="https://piswap362.github.io/Home/" class="menu-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="https://piswap362.github.io/Tasks/" class="menu-btn"><i class="fas fa-tasks"></i> Tasks</a>
+        <a href="https://piswap362.github.io/Friends/" class="menu-btn"><i class="fas fa-user-friends"></i> Friends</a>
+        <a href="https://piswap362.github.io/Wallet/" class="menu-btn active"><i class="fas fa-wallet"></i> Wallet</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let points = parseFloat(localStorage.getItem("points")) || 0;
+            document.getElementById("walletBalance").textContent = points + " TON";
+            
+            // Generate mock wallet address
+            const walletAddress = "EQ" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            document.getElementById("walletAddress").textContent = walletAddress;
+        });
+    </script>
+</body>
+</html>
