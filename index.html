@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TON DEX Wallet</title>
+    <title>TDX DEX Wallet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
@@ -424,15 +424,15 @@
 <body>
     <div class="scroll-container">
         <div class="wallet-header">
-            <h1 class="wallet-title">TON DEX Wallet</h1>
-            <p>Your secure gateway to the TON ecosystem</p>
+            <h1 class="wallet-title">TDX DEX Wallet</h1>
+            <p>Your secure gateway to the TDX ecosystem</p>
         </div>
         
         <div class="wallet-box">
             <i class="fas fa-wallet wallet-icon"></i>
             <p>Your Current Balance:</p>
             <div class="wallet-balance" id="walletBalance">0 TDX</div>
-            <div class="wallet-address" id="walletAddress" title="Click to copy">EQ... (TON Wallet Address)</div>
+            <div class="wallet-address" id="walletAddress" title="Click to copy">EQ... (TDX Wallet Address)</div>
             
             <div class="wallet-actions">
                 <button class="wallet-btn" id="receiveBtn">
@@ -482,7 +482,7 @@
 
             <div class="roadmap-message">
                 <h4><i class="fas fa-rocket"></i> Coming Soon</h4>
-                <p>Full wallet functionality including sending, swapping, and staking will be activated once we reach 1 million active users on TON DEX. Stay tuned for exciting updates!</p>
+                <p>Full wallet functionality including sending, swapping, and staking will be activated once we reach 1 million active users on TDX DEX. Stay tuned for exciting updates!</p>
             </div>
         </div>
     </div>
@@ -514,7 +514,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let points = parseFloat(localStorage.getItem("points")) || 0;
-            document.getElementById("walletBalance").textContent = points.toFixed(2) + " TON";
+            document.getElementById("walletBalance").textContent = points.toFixed(2) + " TDX";
             
             // Generate mock wallet address
             const walletAddress = "EQ" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -572,7 +572,7 @@
             // Simulate balance update (for demo purposes)
             if (points === 0) {
                 localStorage.setItem("points", "2.75");
-                document.getElementById("walletBalance").textContent = "2.75 TON";
+                document.getElementById("walletBalance").textContent = "2.75 TDX";
             }
         });
     </script>
